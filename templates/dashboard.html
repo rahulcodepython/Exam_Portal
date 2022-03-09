@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<header style="margin-top: 2rem;">
+    <h3 class="text-center" style="font-size: 30px; font-weight: bold;">
+      Dashboard
+    </h3>
+</header>
+
+<table class="table" style="margin: 5rem;">
+    <thead>
+      <tr>
+        <th scope="col" style="padding-left: 4rem;">Name</th>
+        <th scope="col">Father's Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">Mobile</th>
+        <th scope="col">Marks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding-left: 4rem;">{{ user.first_name }}</td>
+        <td>{{ data.fathername }}</td>
+        <td>{{ data.address }}</td>
+        <td>{{ data.dob }}</td>
+        <td>{{ data.mobile }}</td>
+        <td style="padding-right: 4rem;">{{ data.marks }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock body %}

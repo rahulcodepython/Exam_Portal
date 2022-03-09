@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs" data-aos="fade-in" style="padding-top: 4rem;">
+        <div class="container">
+            <h2>Add New Question</h2>
+        </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= form Section ======= -->
+    <section id="form" class="form">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row mt-5">
+
+                <div class="col-lg-12 mt-5 mt-lg-0 text-center">
+
+                    <form action="{% url 'question_add' %}" method="post" role="form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="question" class="text-left col-lg-12" style="padding-left: 0;">
+                                <b>
+                                    Question
+                                </b> 
+                            </label>
+                            <input type="text" class="form-control col-lg-12" name="question" onchange="check_question()" id="question" placeholder="Enter a new question" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="category" class="col-lg-12 text-left" style="padding-left: 0;">
+                                <b>
+                                    Category
+                                </b>
+                            </label>
+                            <select class="form-control col-lg-12" name="category" id="category" required>
+                                <option value="English" class="category_list">English</option>
+                                <option value="Math" class="category_list">Math</option>
+                                <option value="Physics" class="category_list">Physics</option>
+                                <option value="Chemistry" class="category_list">Chemistry</option>
+                                <option value="Computer" class="category_list">Computer</option>
+                            </select>
+                        </div>
+                        <div class="form-row row">
+                            <label for="option_a" class="text-left col-lg-6">
+                                <b>
+                                    First Option
+                                </b>
+                            </label>
+                            <label for="option_b" class="text-left col-lg-6">
+                                <b>
+                                    Second Option
+                                </b>
+                            </label>
+                        </div>
+                        <div class="form-row row">
+                            <div class="col-md-6 form-group">
+                                <input type="text" name="option_a" class="form-control" onchange="add_option('option_a')" id="option_a" placeholder="Enter the first option"  required/>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <input type="text" name="option_b" class="form-control" onchange="add_option('option_b')" id="option_b" placeholder="Enter the second option"  required/>
+                            </div>
+                        </div>
+                        <div class="form-row row">
+                            <label for="option_c" class="text-left col-lg-6">
+                                <b>
+                                    Third Option
+                                </b>
+                            </label>
+                            <label for="option_d" class="text-left col-lg-6">
+                                <b>
+                                    Fourth Option
+                                </b>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <input type="text" name="option_c" class="form-control" onchange="add_option('option_c')" id="option_c" placeholder="Enter the third option"  required/>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <input type="text" name="option_d" class="form-control" onchange="add_option('option_d')" id="option_d" placeholder="Enter the fourth option"  required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="category" class="col-lg-12 text-left" style="padding-left: 0;">
+                                <b>
+                                    Correct Answer
+                                </b>
+                            </label>
+                            <select class="form-control col-lg-12" name="correct" id="correct" required>
+                                <option value="" id="select_1"></option>
+                                <option value="" id="select_2"></option>
+                                <option value="" id="select_3"></option>
+                                <option value="" id="select_4"></option>
+                            </select>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="get-started-btn" style="font-size: 20px;border-radius: 20rem; border: none;">Add</button>
+                        </div>
+                    </form>
+                    
+                </div>
+                
+            </div>
+            
+        </div>
+    </section><!-- End Contact Section -->
+
+    <script>
+        function add_option(option_id){
+            var i;
+
+            option = document.getElementById(option_id).value;
+
+            switch (option_id) {
+                case 'option_a':
+                    document.getElementById('select_1').value = option;
+                    document.getElementById('select_1').innerHTML = option;
+                    break;
+
+                case 'option_b':
+                    document.getElementById('select_2').value = option;
+                    document.getElementById('select_2').innerHTML = option;
+                    break;
+
+                case 'option_c':
+                    document.getElementById('select_3').value = option;
+                    document.getElementById('select_3').innerHTML = option;
+                    break;
+
+                case 'option_d':
+                    document.getElementById('select_4').value = option;
+                    document.getElementById('select_4').innerHTML = option;
+                    break;
+            
+                default:
+                    break;
+            }
+        }
+    </script>
+    
+</main>
+
+{% endblock body %}
