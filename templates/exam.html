@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz</title>
 </head>
 
 <style>
     /* coding with nick */
 
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap");
 
     * {
         box-sizing: border-box;
@@ -19,7 +20,7 @@
     body {
         background-color: #b8c6db;
         background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7f7 100%);
-        font-family: 'Poppins', sans-serif;
+        font-family: "Poppins", sans-serif;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -88,30 +89,28 @@
             <h2 id="question">Question Text</h2>
             <ul>
                 <li>
-                    <input type="radio" name="answer" id="a" class="answer">
+                    <input type="radio" name="answer" id="a" class="answer" />
                     <label for="a" id="a_text">Answer</label>
                 </li>
-    
+
                 <li>
-                    <input type="radio" name="answer" id="b" class="answer">
+                    <input type="radio" name="answer" id="b" class="answer" />
                     <label for="b" id="b_text">Answer</label>
                 </li>
-    
+
                 <li>
-                    <input type="radio" name="answer" id="c" class="answer">
+                    <input type="radio" name="answer" id="c" class="answer" />
                     <label for="c" id="c_text">Answer</label>
                 </li>
-    
+
                 <li>
-                    <input type="radio" name="answer" id="d" class="answer">
+                    <input type="radio" name="answer" id="d" class="answer" />
                     <label for="d" id="d_text">Answer</label>
                 </li>
-    
             </ul>
         </div>
-    
+
         <button id="submit">Submit</button>
-    
     </div>
 </body>
 
@@ -157,63 +156,59 @@
             d: "2010",
             correct: "c",
         },
-
     ];
 
-    const quiz = document.getElementById('quiz')
-    const answerEls = document.querySelectorAll('.answer')
-    const questionEl = document.getElementById('question')
-    const a_text = document.getElementById('a_text')
-    const b_text = document.getElementById('b_text')
-    const c_text = document.getElementById('c_text')
-    const d_text = document.getElementById('d_text')
-    const submitBtn = document.getElementById('submit')
+    const quiz = document.getElementById("quiz");
+    const answerEls = document.querySelectorAll(".answer");
+    const questionEl = document.getElementById("question");
+    const a_text = document.getElementById("a_text");
+    const b_text = document.getElementById("b_text");
+    const c_text = document.getElementById("c_text");
+    const d_text = document.getElementById("d_text");
+    const submitBtn = document.getElementById("submit");
 
+    let currentQuiz = 0;
+    let score = 0;
 
-    let currentQuiz = 0
-    let score = 0
-
-    loadQuiz()
+    loadQuiz();
 
     function loadQuiz() {
+        deselectAnswers();
 
-        deselectAnswers()
+        const currentQuizData = quizData[currentQuiz];
 
-        const currentQuizData = quizData[currentQuiz]
-
-        questionEl.innerText = currentQuizData.question
-        a_text.innerText = currentQuizData.a
-        b_text.innerText = currentQuizData.b
-        c_text.innerText = currentQuizData.c
-        d_text.innerText = currentQuizData.d
+        questionEl.innerText = currentQuizData.question;
+        a_text.innerText = currentQuizData.a;
+        b_text.innerText = currentQuizData.b;
+        c_text.innerText = currentQuizData.c;
+        d_text.innerText = currentQuizData.d;
     }
 
     function deselectAnswers() {
-        answerEls.forEach(answerEl => answerEl.checked = false)
+        answerEls.forEach((answerEl) => (answerEl.checked = false));
     }
 
     function getSelected() {
-        let answer
-        answerEls.forEach(answerEl => {
+        let answer;
+        answerEls.forEach((answerEl) => {
             if (answerEl.checked) {
-                answer = answerEl.id
+                answer = answerEl.id;
             }
-        })
-        return answer
+        });
+        return answer;
     }
 
-
-    submitBtn.addEventListener('click', () => {
-        const answer = getSelected()
+    submitBtn.addEventListener("click", () => {
+        const answer = getSelected();
         if (answer) {
             if (answer === quizData[currentQuiz].correct) {
-                score++
+                score++;
             }
 
-            currentQuiz++
+            currentQuiz++;
 
             if (currentQuiz < quizData.length) {
-                loadQuiz()
+                loadQuiz();
             } else {
                 quiz.innerHTML = `
             
@@ -224,10 +219,10 @@
            <input type="hidden" name="score" value="${score}">
 
            <button type="Submit">Reload</button>
-           `
+           `;
             }
         }
-    })
+    });
 </script>
 
 </html>

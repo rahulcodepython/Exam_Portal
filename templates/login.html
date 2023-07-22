@@ -1,38 +1,29 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load static %} {% block body %}
 
-{% load static %}
-
-{% block body %}
-
-<header style="margin-top: 2rem;">
-  <h3 class="text-center" style="font-size: 30px; font-weight: bold;">
-    Login
-  </h3>
+<header style="margin-top: 2rem">
+    <h3 class="text-center" style="font-size: 30px; font-weight: bold">Login</h3>
 </header>
 
-<form style="margin: 2rem 5rem;" action="{% url 'login_user' %}" method="post">
-  {% csrf_token %}
-  <div class="row mb-3">
-    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-    <div class="col-sm-10">
-      <input type="email" name="email" class="form-control" id="inputEmail3">
+<form style="margin: 2rem 5rem" action="{% url 'login_user' %}" method="post">
+    {% csrf_token %}
+    <div class="row mb-3">
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+            <input type="email" name="email" class="form-control" id="inputEmail3" />
+        </div>
     </div>
-  </div>
-  <div class="row mb-3">
-    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-    <div class="col-sm-10">
-      <input type="password" name="password" class="form-control" id="inputPassword3">
+    <div class="row mb-3">
+        <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+            <input type="password" name="password" class="form-control" id="inputPassword3" />
+        </div>
     </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Login</button>
+    <button type="submit" class="btn btn-primary">Login</button>
 
-  <p>
-    If you have not an account 
-    <a href="{% url 'register_temp' %}">
-      Register
-    </a>
-  </p>
-
+    <p>
+        If you have not an account
+        <a href="{% url 'register_temp' %}"> Register </a>
+    </p>
 </form>
 
 {% endblock body %}
